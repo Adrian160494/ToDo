@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="application">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks to do</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Caveat+Brush|Rock+Salt" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="angular/angular.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/variables.js"></script>
+</head>
+<body ng-controller="toDoCtrl">
+    <div class="container">
+        <section>
+            <div class="backgroundList">
+                <div class="heading">
+                    <h1>Tasks to Do</h1>
+                </div>
+                <div class="circletopLeft"><img src="img/pin.png" width="60px"/></div>
+                <div class="circletopRight"><img src="img/pin.png" width="60px"/></div>
+                <div class="circlebottomLeft"><img src="img/pin.png" width="60px"/></div>
+                <div class="circlebottomRight"><img src="img/pin.png" width="60px"/></div>
+                <div class="content">
+                    <section class="addingNewOne">
+                        <div class="adder" ng-show="visibilityAdder">
+                            <form>
+                                <span class="glyphicon glyphicon-eye-close closeAdder" ng-click="hideAdder()"></span>
+                                <div class="row">
+                                    <div class="col-md-6 text-center">
+                                        <label>Zadanie: </label>
+                                        <input class="form-control" name="task" type="text" ng-model="newTask.task"/>
+                                    </div>
+                                    <div class="col-md-6 text-center">
+                                        <label>Data wykonania: </label>
+                                        <input class="form-control" name="date" type="date" ng-model="newTask.date"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button class="btn btn-default" type="button" ng-click="addNewElement(newTask)">Add new task</button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                    <span id="showAdder" class="glyphicon glyphicon-new-window" ng-click="showAdder()"></span>
+                    <br>
+                    <div class="singleTask" id="task.{{$index}}" ng-repeat="item in paginationTasks[page-1]" ng-class="check[$index] ? 'checked' : 'unChecked'" >
+                        <p><table>
+                        <tr>
+                            <td>{{$index+1}}.</td>
+                            <td style="width: 200px;"> {{item.task}}</td>
+                            <td style="padding: 0 40px">Deadline: {{item.date}}</td>
+                            <td><button class="btn btn-danger" ng-click="deleteElement(item.id)">Delete</button></td>
+                            <td style="padding-left: 50px;">Finished: <input name="checkbox.{{$index}}" type="checkbox" class="form-control" ng-model="check[$index]" /> </td>
+                        </tr>
+                    </table></p>
+                    </div>
+                    <div class="pagination">
+                        <<<
+                        <div class="btn-group" ng-repeat="b in buttonsPage">
+                            <button class="btn btn-primary" value="{{$index+1}}" ng-click="changePage($index+1)">{{b}}</button>
+                        </div>
+                        >>>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>

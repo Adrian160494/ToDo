@@ -1,0 +1,29 @@
+{
+	"type": "Collection",
+	"properties": {
+		"task": {
+			"name": "task",
+			"type": "string",
+			"typeLabel": "string",
+			"required": true,
+			"id": "task",
+			"order": 0
+		},
+		"date": {
+			"name": "date",
+			"type": "string",
+			"typeLabel": "string",
+			"required": true,
+			"id": "date",
+			"order": 1
+		},
+		"done": {
+			"name": "done",
+			"type": "boolean",
+			"typeLabel": "boolean",
+			"required": false,
+			"id": "done",
+			"order": 2
+		}
+	}
+}
